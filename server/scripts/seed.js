@@ -4,6 +4,7 @@
  * Seeds database with initial government scheme sources pointing to fixture server.
  */
 
+require('dotenv').config();
 const { connectDb, disconnectDb } = require('../src/db');
 const Source = require('../src/models/Source');
 const { checkSource } = require('../src/checker');
