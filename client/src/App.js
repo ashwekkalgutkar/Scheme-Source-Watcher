@@ -1,6 +1,4 @@
-import React, { useState, useEffect } from 'react';
-import './App.css';
-
+const { useState, useEffect } = window.React || (typeof React !== 'undefined' ? React : {});
 const API_BASE = 'http://localhost:4000/api';
 
 function App() {
@@ -415,6 +413,11 @@ function App() {
       )}
     </div>
   );
+}
+
+if (typeof ReactDOM !== 'undefined' && document.getElementById('root')) {
+  const root = ReactDOM.createRoot(document.getElementById('root'));
+  root.render(React.createElement(App));
 }
 
 export default App;
