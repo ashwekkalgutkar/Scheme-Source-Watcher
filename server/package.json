@@ -1,0 +1,30 @@
+{
+  "name": "scheme-source-watcher-server",
+  "version": "1.0.0",
+  "description": "Government Scheme Source Watcher Server",
+  "main": "src/index.js",
+  "scripts": {
+    "dev": "node src/index.js",
+    "test": "jest --runInBand --detectOpenHandles --forceExit",
+    "seed": "node scripts/seed.js",
+    "fixtures": "node fixtures/server.js"
+  },
+  "dependencies": {
+    "cheerio": "^1.0.0-rc.12",
+    "cors": "^2.8.5",
+    "dotenv": "^16.4.5",
+    "express": "^4.19.2",
+    "mongoose": "^8.3.1",
+    "node-cron": "^3.0.3",
+    "playwright": "^1.43.1"
+  },
+  "devDependencies": {
+    "jest": "^29.7.0",
+    "mongodb-memory-server": "^9.1.9",
+    "supertest": "^6.3.4"
+  },
+  "jest": {
+    "testEnvironment": "node",
+    "testTimeout": 30000
+  }
+}

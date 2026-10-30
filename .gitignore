@@ -1,0 +1,9 @@
+node_modules/
+*/node_modules/
+data/screenshots/
+*.log
+.env
+.DS_Store
+dist/
+build/
+coverage/
