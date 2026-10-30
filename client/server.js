@@ -2,7 +2,7 @@ const http = require('http');
 const fs = require('fs');
 const path = require('path');
 
-const PORT = process.env.PORT || 3000;
+let PORT = parseInt(process.env.PORT || '3000', 10);
 const CLIENT_DIR = __dirname;
 
 const MIME_TYPES = {
@@ -42,7 +42,6 @@ const server = http.createServer((req, res) => {
       return;
     }
 
-    // Replace %PUBLIC_URL% if serving index.html
     if (ext === '.html') {
       content = content.toString('utf-8').replace(/%PUBLIC_URL%/g, '');
       res.writeHead(200, { 'Content-Type': contentType });
@@ -54,9 +53,23 @@ const server = http.createServer((req, res) => {
   });
 });
 
-server.listen(PORT, () => {
-  console.log(`===============================================`);
-  console.log(`Scheme Source Watcher Client running at:`);
-  console.log(`http://localhost:${PORT}`);
-  console.log(`===============================================`);
+function listen(portToTry) {
+  server.listen(portToTry, () => {
+    console.log(`===============================================`);
+    console.log(`Scheme Source Watcher Client running at:`);
+    console.log(`http://localhost:${portToTry}`);
+    console.log(`===============================================`);
+  });
+}
+
+server.on('error', (err) => {
+  if (err.code === 'EADDRINUSE') {
+    PORT++;
+    console.log(`Port in use, trying next available port: http://localhost:${PORT}`);
+    listen(PORT);
+  } else {
+    console.error('Server error:', err);
+  }
 });
+
+listen(PORT);
