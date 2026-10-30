@@ -1,3 +1,5 @@
+/* @jsx React.createElement */
+/* @jsxFrag React.Fragment */
 const { useState, useEffect } = window.React || (typeof React !== 'undefined' ? React : {});
 const API_BASE = 'http://localhost:4000/api';
 
@@ -420,4 +422,6 @@ if (typeof ReactDOM !== 'undefined' && document.getElementById('root')) {
   root.render(React.createElement(App));
 }
 
-export default App;
+if (typeof module !== 'undefined' && module.exports) {
+  module.exports = App;
+}

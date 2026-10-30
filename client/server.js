@@ -2,6 +2,13 @@ const http = require('http');
 const fs = require('fs');
 const path = require('path');
 
+// Ensure self-contained index.html is generated
+try {
+  require('./build');
+} catch (e) {
+  console.warn('Auto-build warning:', e.message);
+}
+
 let PORT = parseInt(process.env.PORT || '3000', 10);
 const CLIENT_DIR = __dirname;
 
